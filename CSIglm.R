@@ -1,5 +1,5 @@
 #Adapted glm() function from the glm2 package
-CSIglm.fit <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NULL, 
+CSIglm <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NULL, 
     mustart = NULL, offset = rep(0, nobs), family = gaussian(), 
     control = list(), intercept = TRUE, Amat=NULL, bvec=bvec, meq=0) 
 {
