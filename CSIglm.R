@@ -105,8 +105,7 @@ CSIglm <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NULL,
                                          bvec = bvec, meq = meq)
               
               fit$coefficients <- fit$solution  
-            } 
-            else { fit <- fit.org}
+            } else { fit <- fit.org}
             
             if (any(!is.finite(fit$coefficients))) {
                 conv <- FALSE
@@ -243,7 +242,7 @@ CSIglm <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NULL,
     rank <- if (EMPTY) 0 else fit.org$rank
     resdf <- n.ok - rank
     aic.model <- aic(y, n, mu, weights, dev) + 2 * rank
-    list(coefficients = coef, residuals = residuals, fitted.values = mu, 
+    fit <- list(coefficients = coef, residuals = residuals, fitted.values = mu, 
         effects = if (!EMPTY) fit.org$effects, R = if (!EMPTY) Rmat, 
         rank = rank, qr = if (!EMPTY) structure(fit.org$qr[c("qr", "rank", 
             "qraux", "pivot", "tol")], class = "qr"), family = family, 
@@ -251,4 +250,7 @@ CSIglm <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NULL,
         null.deviance = nulldev, iter = iter, weights = wt, prior.weights = weights, 
         df.residual = resdf, df.null = nulldf, y = y, converged = conv, 
         boundary = boundary)
+    
+    class(fit) <- c(fit$class, c("glm", "lm"))
+    fit
 }
