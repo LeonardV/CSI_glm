@@ -76,7 +76,7 @@ CSIglm <- function (formula, family = gaussian, data, weights, subset,
     fit <- c(fit, list(call = call, formula = formula, terms = mt, 
         data = data, offset = offset, control = control, method = method, 
         contrasts = attr(X, "contrasts"), xlevels = .getXlevels(mt, 
-            mf)))
+            mf), Amat = Amat, bvec = bvec, meq = meq))
     class(fit) <- c(fit$class, c("glm", "lm"))
     fit
 }
