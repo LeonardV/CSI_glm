@@ -11,11 +11,7 @@ QLRT.Wald.Score.test.statistics <- function(fit0, fit1, s2, verbose=TRUE) {
   I1 <- solve(vcov(fit1))
   
   dispersion <- if (fit0$family[1] %in% c("poisson","binomial", "Negative Binomial")) { 
-    1L 
-  } 
-  else { 
-    s2
-  }
+    1L } else { s2 }
   
   #Quasi likelihood ratio test statistics
   QLR  <- 2/dispersion*( logLik(fit1)[1] - logLik(fit0)[1] )
